@@ -19,12 +19,12 @@ func main() {
 
 	cfgFile, err := config.LoadConfig("./config/config")
 	if err != nil {
-		log.Fatalf("Load config: ", err.Error())
+		log.Fatalf("Load config: %v", err)
 	}
 
 	cfg, err := config.ParseConfigDefault(cfgFile)
 	if err != nil {
-		log.Fatalf("Parse config: ", err.Error())
+		log.Fatalf("Parse config: %v", err)
 	}
 
 	logger := zap.NewAppLogger(cfg)
