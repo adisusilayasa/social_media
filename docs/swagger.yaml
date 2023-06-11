@@ -1,0 +1,320 @@
+definitions:
+  models.Member:
+    properties:
+      gender:
+        type: string
+      id:
+        type: integer
+      skinColor:
+        type: string
+      skinType:
+        type: string
+      username:
+        type: string
+    type: object
+  models.Product:
+    properties:
+      id:
+        type: integer
+      price:
+        type: number
+      productName:
+        type: string
+    type: object
+  models.ProductWithReview:
+    properties:
+      product:
+        $ref: '#/definitions/models.Product'
+      review:
+        items:
+          $ref: '#/definitions/models.Review'
+        type: array
+    type: object
+  models.Review:
+    properties:
+      descReview:
+        type: string
+      gender:
+        type: string
+      likeCount:
+        type: integer
+      memberId:
+        type: integer
+      productId:
+        type: integer
+      reviewId:
+        type: integer
+      skinColor:
+        type: string
+      skinType:
+        type: string
+      username:
+        type: string
+    type: object
+  utils.Response:
+    properties:
+      code:
+        type: integer
+      data: {}
+      message:
+        type: string
+      status:
+        type: string
+    type: object
+info:
+  contact: {}
+paths:
+  /members/:
+    post:
+      consumes:
+      - application/json
+      description: Add a new member
+      operationId: addNewMember
+      parameters:
+      - description: Member object
+        in: body
+        name: member
+        required: true
+        schema:
+          $ref: '#/definitions/models.Member'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/utils.Response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/utils.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/utils.Response'
+      summary: Add a new member
+      tags:
+      - Member
+  /members/{id}:
+    delete:
+      description: Delete a member by ID
+      operationId: deleteMember
+      parameters:
+      - description: Member ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/utils.Response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/utils.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/utils.Response'
+      summary: Delete member
+      tags:
+      - Member
+    get:
+      description: Get a member by their ID
+      operationId: getMemberByID
+      parameters:
+      - description: Member ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/utils.Response'
+            - properties:
+                data:
+                  $ref: '#/definitions/models.Member'
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/utils.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/utils.Response'
+      summary: Get member by ID
+      tags:
+      - Member
+    put:
+      consumes:
+      - application/json
+      description: Update an existing member
+      operationId: updateMember
+      parameters:
+      - description: Member ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: Member object
+        in: body
+        name: member
+        required: true
+        schema:
+          $ref: '#/definitions/models.Member'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/utils.Response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/utils.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/utils.Response'
+      summary: Update member
+      tags:
+      - Member
+  /members/all:
+    get:
+      description: Get a list of all members
+      operationId: getAllMembers
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/utils.Response'
+            - properties:
+                data:
+                  items:
+                    $ref: '#/definitions/models.Member'
+                  type: array
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/utils.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/utils.Response'
+      summary: Get all members
+      tags:
+      - Member
+  /products/{id}:
+    get:
+      description: Get a product along with its reviews by ID
+      operationId: getProductWithReview
+      parameters:
+      - description: Product ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/utils.Response'
+            - properties:
+                data:
+                  $ref: '#/definitions/models.ProductWithReview'
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/utils.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/utils.Response'
+      summary: Get product with reviews
+      tags:
+      - Product
+  /products/reviews/{userId}/{id}/like:
+    delete:
+      description: Cancel the like on a review by review ID and user ID
+      operationId: cancelLikeReview
+      parameters:
+      - description: Review ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: User ID
+        in: path
+        name: userId
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/utils.Response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/utils.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/utils.Response'
+      summary: Cancel like on a review
+      tags:
+      - Product
+    post:
+      description: Like a review by review ID and user ID
+      operationId: likeReview
+      parameters:
+      - description: Review ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: User ID
+        in: path
+        name: userId
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/utils.Response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/utils.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/utils.Response'
+      summary: Like a review
+      tags:
+      - Product
+swagger: "2.0"

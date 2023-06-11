@@ -1,0 +1,26 @@
+server:
+  AppVersion: 1.0.0
+  Port: :8080
+  Mode: Development
+  JwtSecretKey: <>!@#
+  JWTExpiredTime: 3600
+  SSL: true
+  # ReadTimeout: 5
+  # WriteTimeout: 5
+  Debug: true
+  CSRF: true
+
+swagger:
+  Title: API Service
+  Description: API Service
+  Version: 1.0
+  Basepath: /api/v1
+  Host: localhost:8080
+
+mysql:
+  Host: localhost
+  Port: 3306
+  User: root
+  DBName: test_code
+  Driver: mysql
+  SSLMode: true
