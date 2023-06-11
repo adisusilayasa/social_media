@@ -1,6 +1,28 @@
 # Likes Me 
 Likes Me is a web application for managing members. It provides a RESTful API for performing CRUD (Create, Read, Update, Delete) operations on member data.
 
+## Table of Contents
+
+- [Features](#features)
+- [Technologies Used](#technologies-used)
+- [Getting Started](#getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
+- [API Documentation](#api-documentation)
+- [Usage](#usage)
+  - [Members](#members)
+    - [Get all members](#get-all-members)
+    - [Get member by ID](#get-member-by-id)
+    - [Add a new member](#add-a-new-member)
+    - [Update an existing member](#update-an-existing-member)
+    - [Delete a member](#delete-a-member)
+  - [Products](#products)
+    - [Get product with reviews](#get-product-with-reviews)
+    - [Like a review](#like-a-review)
+    - [Cancel like on a review](#cancel-like-on-a-review)
+- [Contributing](#contributing)
+- [License](#license)
+
 ## Features
 
 - Get all members
@@ -8,6 +30,9 @@ Likes Me is a web application for managing members. It provides a RESTful API fo
 - Add a new member
 - Update an existing member
 - Delete a member
+- Get product with reviews
+- Like a review
+- Cancel like on a review
 
 ## Technologies Used
 
@@ -107,12 +132,11 @@ This endpoint cancels the like on a review by review ID and user ID.
 
 ## Contributing
 
-Contributions to Project Name are welcome and encouraged! If you have any suggestions, bug reports, or feature requests, please open an issue or submit a pull request.
+Contributions to Likes Me are welcome and encouraged! If you have any suggestions, bug reports, or feature requests, please open an issue or submit a pull request.
 
 ## License
 
 [MIT License](https://opensource.org/licenses/MIT)
-
 
 
 
