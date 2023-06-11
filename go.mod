@@ -1,4 +1,4 @@
-module test
+module social_media
 
 go 1.16
 
