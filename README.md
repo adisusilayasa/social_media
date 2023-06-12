@@ -60,11 +60,12 @@ cd social_media
 3. Install the dependencies:
 go mod download
 
+4. Create database. You can find the sql in ./config/db 
 
-4. Build the application:
+5. Build the application:
 go build
 
-5. Run the application:
+6. Run the application:
 You can use makefile:
 make run
 
