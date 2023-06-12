@@ -1,5 +1,5 @@
 # Likes Me 
-Likes Me is a web application for managing members. It provides a RESTful API for performing CRUD (Create, Read, Update, Delete) operations on member data.
+Likes Me is a web application for managing members and products. It provides a RESTful API for performing CRUD (Create, Read, Update, Delete) operations on member data and products data.
 
 ## Table of Contents
 
