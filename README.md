@@ -51,7 +51,7 @@ Likes Me is a web application for managing members. It provides a RESTful API fo
 ### Installation
 
 1. Clone the repository:
-git clone https://github.com/your-username/project-name.git
+git clone https://github.com/adisusilayasa/social_media.git
 
 2. Change to the project directory:
 cd social_media
